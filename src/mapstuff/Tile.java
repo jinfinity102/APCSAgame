@@ -1,5 +1,7 @@
 package mapstuff;
 
+import entityclasses.Entity;
+
 public class Tile {
   private static final int[] d1x = { -1, 0, 0, 1}; // (dx, dy) coordinates
   private static final int[] d1y = {  0, 1,-1, 0}; // of squares adjacent to it
@@ -31,7 +33,7 @@ public class Tile {
     }
   }
 
-  public void enter() {
+  public void enter(Entity player) {
 
   }
 }

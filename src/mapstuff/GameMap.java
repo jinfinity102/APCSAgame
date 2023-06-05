@@ -1,5 +1,7 @@
 package mapstuff;
 
+import entityclasses.Entity;
+
 public class GameMap {
   private Tile[][] map1 = new Tile[20][20]; // has x and y for location and z stores information about
   private int[][] playerPOV = new int[5][5]; // numbers given to map will have specific meanings; has only tileInfo
@@ -16,13 +18,15 @@ public class GameMap {
 
 
    */
-  private Tile[][] currentMap;
+  private Tile[][] currentMap; // was gonna create multiple maps but was low on time kek
   private int x, y; // character coordinates
+  private Entity player;
 
 
-  public GameMap() { // will convert to string here and be printed into something legible // generating map in main
+  public GameMap(Entity player) { // will convert to string here and be printed into something legible // generating map in main
     // I dont really want to create a random map since thats kinda annoying so im doing something like this,
     // but you only have a line of sight of 2 units around you
+    this.player = player;
     /*
          1     2     3     4     5
       ╔═════╦═════╦═════╦═════╦═════╗
@@ -38,7 +42,7 @@ public class GameMap {
       ╚═════╩═════╩═════╩═════╩═════╝
     
     */
-    currentMap = map;
+    currentMap = map1;
   }
 
 
@@ -70,7 +74,7 @@ public class GameMap {
     Tile tile = currentMap[x][y];
     if (tile.getBorder(direction) == 0) {
       movePlayer(direction);
-      tile.enter();
+      tile.enter(player);
     }
 
 

@@ -1,10 +1,13 @@
+package main;
+
 import entityclasses.Entity;
-import entityclasses.classes.Assassin;
+import entityclasses.classes.*;
+
 import mapstuff.GameMap;
 
 import java.util.Scanner;
 
-class Main {
+public class Main {
   /*
   public static void clearScreen() { // very cool ansi escape sequence which clears screen for me
 
@@ -12,19 +15,24 @@ class Main {
     System.out.flush();
   }
   */
+  public static Scanner input = new Scanner(System.in);
   public static Entity getPlayer(String className, String name) {
+    Entity player;
     switch (className) {
       case "assassin":
-        Entity player = new Assassin(name);
+        player = new Assassin(name);
         return player;
+      case "bard":
+        player = new Bard(name);
+        return player;
+      default:
+        throw new IllegalArgumentException("Illegal class");
     }
   }
 
   public static void main(String[] args) { // in retrospect, this seems a lot like pokemon LOL
-    Scanner input = new Scanner(System.in);
 
     //clearScreen();
-    GameMap gameMap = new GameMap();
 
     System.out.println("eaj"); // long introductory backstory stuff
     System.out.println("Enter your name adventurer:");
@@ -37,6 +45,12 @@ class Main {
 
     String role = input.nextLine().toLowerCase();
 
+    Entity player = getPlayer(role, name);
+
+
+    GameMap gameMap = new GameMap(player);
+
+
 
     // more story
     // will be spawned with certain attributes and a certain inventory
@@ -48,6 +62,7 @@ class Main {
     while (true) {
       char direction = input.nextLine().toLowerCase().charAt(0);
       gameMap.updateMap(direction);
+
 
 
       break;
