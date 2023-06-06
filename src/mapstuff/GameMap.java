@@ -8,7 +8,7 @@ public class GameMap {
   /* tileInfo key:
   0 == nothing, 1 == any obstacle, 2 == unsafe spot (70% chance to find a monster there),
   3 == special enemy, 5 == story, 6 == chest,
-  7 == job or minigame ( minesweeper, puzzle, maze, memorization game, etc ),
+  7 == job or mini game ( minesweeper, puzzle, maze, memorization game, etc ),
   8 == rest site, 9 == shop
 
   // creating a class or method for each number
@@ -18,13 +18,13 @@ public class GameMap {
 
 
    */
-  private Tile[][] currentMap; // was gonna create multiple maps but was low on time kek
+  private Tile[][] currentMap; // was going to create multiple maps but was low on time kek
   private int x, y; // character coordinates
   private Entity player;
 
 
   public GameMap(Entity player) { // will convert to string here and be printed into something legible // generating map in main
-    // I dont really want to create a random map since thats kinda annoying so im doing something like this,
+    // I don't really want to create a random map since that's kinda annoying so im doing something like this,
     // but you only have a line of sight of 2 units around you
     this.player = player;
     /*
@@ -65,7 +65,7 @@ public class GameMap {
         x++;
         break;
       default:
-        throw new IllegalArgumentException("Invalid direction " + direction);
+        return;
     }
   }
 
